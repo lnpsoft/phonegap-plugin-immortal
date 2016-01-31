@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:amazon="http://schemas.android.com/apk/lib/com.amazon.device.ads"
     xmlns:rim="http://www.blackberry.com/ns/widgets"
-    id="phonegap-plugin-push"
+    id="phonegap-plugin-immortal"
     version="1.5.2">
 
   <name>ImmortalService</name>
@@ -55,9 +55,9 @@
     <framework src="com.android.support:support-v13:23+" />
     <framework src="com.google.android.gms:play-services-gcm:+" />
 
-		<source-file src="src/android/com/lnpsoft/immortal/ImmortalServicePlugin.java" target-dir="src/com/adobe/phonegap/push/" />
-    <source-file src="src/android/com/lnpsoft/immortal/RestartService.java" target-dir="src/com/adobe/phonegap/push/" />
-    <source-file src="src/android/com/lnpsoft/immortal/MaintenanceService.java" target-dir="src/com/adobe/phonegap/push/" />
+		<source-file src="src/android/com/lnpsoft/immortal/ImmortalServicePlugin.java" target-dir="src/com/lnpsoft/immortal/" />
+    <source-file src="src/android/com/lnpsoft/immortal/RestartService.java" target-dir="src/com/lnpsoft/immortal/" />
+    <source-file src="src/android/com/lnpsoft/immortal/MaintenanceService.java" target-dir="src/com/lnpsoft/immortal/" />
 
 	</platform>
 
