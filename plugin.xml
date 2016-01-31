@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:amazon="http://schemas.android.com/apk/lib/com.amazon.device.ads"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    id="phonegap-plugin-push"
+    version="1.5.2">
+
+  <name>ImmortalService</name>
+	<author>June PARK</author>
+
+	<description>
+		This plugin allows your application to immortal background service.
+	</description>
+
+	<license>MIT</license>
+
+	<js-module src="www/immortal_plugin.js" name="ImmortalPlugin">
+        <clobbers target="ImmortalPlugin" />
+	</js-module>
+
+	<engines>
+        <engine name="cordova" version=">=3.6.3" />
+        <engine name="cordova-android" version=">=4.0.0" />
+    </engines>
+
+	<!-- android -->
+	<platform name="android">
+
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="ImmortalPlugin" >
+				<param name="android-package" value="com.lnpsoft.immortal.ImmortalPlugin"/>
+			</feature>
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.WAKE_LOCK" />
+			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+			<uses-permission android:name="android.permission.BOOT_COMPLETED" />
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <service android:enabled="true" android:name="com.lnpsoft.immortal.MaintenanceService" />
+      <receiver android:enabled="true" android:exported="false" android:label="RestartService" android:name="com.lnpsoft.immortal.RestartService">
+          <intent-filter>
+              <action android:name="ACTION.RESTART.MaintenanceService" />
+              <action android:name="android.intent.action.BOOT_COMPLETED" />
+          </intent-filter>
+      </receiver>
+		</config-file>
+
+    <framework src="immortal.gradle" custom="true" type="gradleReference" />
+    <framework src="com.android.support:support-v13:23+" />
+    <framework src="com.google.android.gms:play-services-gcm:+" />
+
+		<source-file src="src/android/com/lnpsoft/immortal/ImmortalServicePlugin.java" target-dir="src/com/adobe/phonegap/push/" />
+    <source-file src="src/android/com/lnpsoft/immortal/RestartService.java" target-dir="src/com/adobe/phonegap/push/" />
+    <source-file src="src/android/com/lnpsoft/immortal/MaintenanceService.java" target-dir="src/com/adobe/phonegap/push/" />
+
+	</platform>
+
+</plugin>
